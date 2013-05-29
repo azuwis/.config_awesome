@@ -162,6 +162,10 @@ vicious.register(netwidget, vicious.widgets.net,
             down_kb = down_kb + args["{wlan0 down_kb}"]
             up_kb = up_kb + args["{wlan0 up_kb}"]
         end
+        if (args["{wlan1 down_kb}"] ~= nil) then
+            down_kb = down_kb + args["{wlan1 down_kb}"]
+            up_kb = up_kb + args["{wlan1 up_kb}"]
+        end
         return down_kb .. "/" .. up_kb .. "KB "
     end, 7)
 
