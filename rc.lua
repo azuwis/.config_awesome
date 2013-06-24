@@ -596,5 +596,6 @@ run_once("compton")
 run_once("parcellite")
 run_once("xcalib .color/icc/Apple_Macbook_Pro_5,2_LCD.icc")
 run_once("xautolock -time 30 -locker 'i3lock --color=000000'")
+run_once("blueproximity")
 -- run_once("xsetroot -cursor_name left_ptr")
 -- }}}
