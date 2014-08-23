@@ -355,6 +355,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "Pause", toggle_blank),
     awful.key({ }, "XF86Display", function () awful.util.spawn("my-extern-monitor right") end),
     awful.key({ modkey }, "F1", keydoc.display),
+    awful.key({ modkey, "Shift" }, "u", function () awful.util.spawn("urxvt -title Pum -g 48x18 -e pum") end, "Rum umounter"),
 
     -- Volume
     awful.key({ modkey }, ".", function () awful.util.spawn("my-volume up") end),
@@ -418,6 +419,10 @@ clientkeys = awful.util.table.join(
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
+        end),
+    awful.key({ modkey,          }, "p",
+        function (c)
+            c:geometry({x=0, y=22, width=1280, height=720})
         end),
     awful.key({ modkey,           }, "m",
         function (c)
@@ -493,8 +498,9 @@ awful.rules.rules = {
     { rule = { class = "MPlayer" },
       properties = { floating = true, border_width = 0 } },
     { rule = { class = "mplayer2" },
-      properties = { floating = true,
-                     border_width = 0 } },
+      properties = { floating = true, border_width = 0 } },
+    { rule = { class = "mpv" },
+      properties = { floating = true, border_width = 0 } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
@@ -504,7 +510,7 @@ awful.rules.rules = {
     { rule = { class = "Cview" },
       properties = { floating = true } },
     { rule = { class = "URxvt" },
-      properties = { opacity = 0.97, border_width = beautiful.border_width } },
+      properties = { opacity = 0.97 } },
     { rule = { class = "Gvim" },
       properties = { opacity = 0.97 } },
     -- Set Firefox to always map on tags number 2 of screen 1.
@@ -531,6 +537,8 @@ awful.rules.rules = {
       properties = { tag = tags[1][5] } },
     { rule = { class = "VBoxSDL" },
       properties = { tag = tags[1][5] } },
+    { rule = { class = "URxvt", name = "Pum" },
+      properties = { floating = true, opacity = 0.97 } },
 }
 -- }}}
 
@@ -593,9 +601,9 @@ function run_once(prg,arg_string,pname,screen)
 end
 --run_once("unagi")
 run_once("compton")
+run_once("devmon")
 run_once("parcellite")
 run_once("xcalib .color/icc/Apple_Macbook_Pro_5,2_LCD.icc")
 run_once("xautolock -time 30 -locker 'i3lock --color=000000'")
-run_once("blueproximity")
 -- run_once("xsetroot -cursor_name left_ptr")
 -- }}}
